@@ -5,20 +5,21 @@
         <div class="card-header">Edit Page</div>
         <div class="card-body">
 
-            <form action="{{ route('batches.update', $batches->id) }}" method="post">
+            <form action="{{ route('payments.update', $payments->id) }}" method="post">
                 @csrf
                 @method('put')
-                <input type="hidden" name="id" id="id" value="{{ $batches->id }}" />
-                <label>Name</label></br>
-                <input type="text" name="name" id="name" value="{{ $batches->name }}" class="form-control"></br>
-                <label>Course</label></br>
-                <select name="course_id" id="course_id" class="form-control">
-                    @foreach ($courses as $id => $name)
-                        <option value="{{ $id }}">{{ $name }}</option>
+                <input type="hidden" name="id" id="id" value="{{ $payments->id }}" />
+                <label>Enrollment</label></br>
+                <select name="enrollment_id" id="enrollment_id" class="form-control">
+                    @foreach ($enrollments as $id => $enroll_no)
+                        <option value="{{ $id }}">{{ $enroll_no }}</option>
                     @endforeach
                 </select><br>
-                <label>Start Time</label></br>
-                <input type="text" name="start_time" id="start_time" value="{{ $batches->start_time }}"
+                <label>Paid Date</label></br>
+                <input type="text" name="start_time" id="start_time" value="{{ $payments->paid_date }}"
+                    class="form-control"></br>
+                <label>Amount</label></br>
+                <input type="text" name="amount" id="amount" value="{{ $payments->amount }}"
                     class="form-control"></br>
                 <input type="submit" value="Update" class="btn btn-success"></br>
             </form>

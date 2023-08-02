@@ -2,15 +2,15 @@
 @section('content')
 
     <div class="card">
-        <div class="card-header">Enrollment Page</div>
+        <div class="card-header">Payment Page</div>
         <div class="card-body">
 
-            <form action="{{ route('enrollment.store') }}" method="post">
+            <form action="{{ route('payments.store') }}" method="post">
                 {!! csrf_field() !!}
                 <label>Enrollment Number</label></br>
-                <select name="enrollment_no" id="enrollment_no" class="form-control">
-                    @foreach ($payments as $id => $name)
-                        <option value="{{ $id }}">{{ $name }}</option>
+                <select name="enrollment_id" id="enrollment_id" class="form-control">
+                    @foreach ($enrollments as $id => $enroll_no)
+                        <option value="{{ $id }}">{{ $enroll_no }}</option>
                     @endforeach
                 </select></br>
                 <label>Paid Date</label></br>

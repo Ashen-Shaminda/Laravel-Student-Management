@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Enrollment;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,8 @@ class PaymentController extends Controller
     */
    public function index()
    {
-      $payments = Course::all();
-      return view('payments.index')->with('payments', $payments);
+      $payments = Payment::all();
+      return view('payment.index')->with('payments', $payments);
    }
 
    /**
@@ -22,8 +23,8 @@ class PaymentController extends Controller
     */
    public function create()
    {
-      $payments = Payment::pluck('enroll_no', 'id');
-      return view('payments.create', compact('payments'));
+      $enrollments = Enrollment::pluck('enroll_no', 'id');
+      return view('payment.create', compact('enrollments'));
    }
 
    /**
@@ -42,7 +43,7 @@ class PaymentController extends Controller
    public function show(string $id)
    {
       $payments = Payment::find($id);
-      return view('payments. show')->with('payments', $payments);
+      return view('payment.show')->with('payments', $payments);
    }
 
    /**
@@ -51,7 +52,8 @@ class PaymentController extends Controller
    public function edit(string $id)
    {
       $payments = Payment::find($id);
-      return view('payments.edit')->with('payments', $payments);
+      $enrollments = Enrollment::pluck('enroll_no', 'id');
+      return view('payment.edit', compact('enrollments', 'payments'));
    }
 
    /**
@@ -62,7 +64,7 @@ class PaymentController extends Controller
       $payments = Payment::find($id);
       $input = $request->all();
       $payments->update($input);
-      return redirect('batches')->with('flash_message', 'Payment Updated!');
+      return redirect('payments')->with('flash_message', 'Payment Updated!');
    }
 
    /**
